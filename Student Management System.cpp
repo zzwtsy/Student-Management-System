@@ -30,16 +30,16 @@ void Menu() {
 	while (1) {
 		switch (i) {
 			//输入1进入到数据录入二级菜单
-			case 1:
-				fnInput();//数据录入函数
-				break;
+		case 1:
+			fnInput();//数据录入函数
+			break;
 			//输入2进入到数据输出函数
-			case 2:
-				fnDisplay();//学生信息输出函数
-				break;
+		case 2:
+			fnDisplay();//学生信息输出函数
+			break;
 			//输入0退出程序
-			case 0:
-				return;
+		case 0:
+			return;
 			default:
 				printf("请输入正确的数字!!!");
 		}
@@ -59,30 +59,30 @@ void fnInput() {
 		printf("\n");
 		switch (tem) {
 			//输入1进行学生数据录入
-			case 1:
-				printf("学生人数:");
-				scanf("%d", &student.iStudent);
-				printf("学生考试科目数:");
-				scanf("%d", &student.chClass);
-				//循环输入学生姓名、学号、成绩
-				for (int j = 0; j < student.iStudent; j++) {
-					printf("输入第%d名学生姓名:", j + 1);
-					scanf("%s", student1[j].chName);
-					printf("输入第%d名学生学号:", j + 1);
-					scanf("%s", student1[j].chStuId);
-					for (int k = 0; k < student.chClass; k++) {
-						printf("输入第%d名学生第%d门课的成绩:", j + 1, k + 1);
-						scanf("%d", &student1[k].iTest_scores[k]);
-					}
-					printf("\n");
+		case 1:
+			printf("学生人数:");
+			scanf("%d", &student.iStudent);
+			printf("学生考试科目数:");
+			scanf("%d", &student.chClass);
+			//循环输入学生姓名、学号、成绩
+			for (int j = 0; j < student.iStudent; j++) {
+				printf("输入第%d名学生姓名:", j + 1);
+				scanf("%s", student1[j].chName);
+				printf("输入第%d名学生学号:", j + 1);
+				scanf("%s", student1[j].chStuId);
+				for (int k = 0; k < student.chClass; k++) {
+					printf("输入第%d名学生第%d门课的成绩:", j + 1, k + 1);
+					scanf("%d", &student1[k].iTest_scores[k]);
 				}
-				//清空屏幕
-				system("cls");
-				break;
+				printf("\n");
+			}
+			//清空屏幕
+			system("cls");
+			break;
 			//输入0返回主菜单
-			case 0:
-				Menu();//主菜单函数
-				break;
+		case 0:
+			Menu();//主菜单函数
+			break;
 			default:
 				printf("输入错误!!!");
 		}
@@ -102,23 +102,27 @@ void fnDisplay() {
 		printf("\n");
 		switch (tem) {
 			//输入1将所有学生信息输出到屏幕
-			case 1:
-				//循环输出学生姓名、学号、成绩
-				for (int j = 0; j < student.iStudent; j++) {
-					printf("第%d名学生姓名:%s\n", j + 1, student1[j].chName);
-					printf("第%d名学生学号:%s\n", j + 1, student1[j].chStuId);
-					for (int k = 0; k < student.chClass; k++) {
-						printf("第%d名学生第%d门课的成绩:%d\n", j + 1, k + 1, student1[k].iTest_scores[k]);
-					}
-					printf("\n");
+		case 1:
+			//循环输出学生姓名、学号、成绩
+			for (int j = 0; j < student.iStudent; j++) {
+				printf("第%d名学生姓名:%s\n", j + 1, student1[j].chName);
+				printf("第%d名学生学号:%s\n", j + 1, student1[j].chStuId);
+				for (int k = 0; k < student.chClass; k++) {
+					printf("第%d名学生第%d门课的成绩:%d\n", j + 1, k + 1, student1[k].iTest_scores[k]);
 				}
-				//清空屏幕
-				system("cls");
-				break;
+				printf("\n");
+			}
+			//暂停程序,用户按任意键结束
+			system("pause");
+			break;
 			//输入0返回主菜单
-			case 0:
-				Menu();//主菜单函数
-				break;
+		case 0:
+			Menu();//主菜单函数
+			//暂停程序,用户按任意键结束
+			system("pause");
+			//清空屏幕
+			system("cls");
+			break;
 		}
 	}
 }
