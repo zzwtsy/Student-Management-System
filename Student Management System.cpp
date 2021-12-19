@@ -48,7 +48,6 @@ void Menu() {
 			break;
 		//退出程序
 		case 0:
-			return;
 			break;
 		default:
 			printf("请输入正确的数字!!!");
@@ -74,21 +73,22 @@ void fnInput() {
 				printf("学生考试科目数:");
 				scanf("%d", &student.iClassNumber);
 				for (int i = 0; i < student.iClassNumber; i++) {
-					printf("科目名:");
+					printf("科目%d名称:", i + 1);
 					scanf("%s", student1[i].chClass);
 				}
-				//循环输入学生姓名、学号、成绩
+				//循环输入学生姓名、学号、年龄、性别、成绩
 				for (int j = 0; j < student.iStudent; j++) {
-					printf("输入第%d名学生姓名:", j + 1);
+					printf("第%d名学生\n", j + 1);
+					printf("姓名:");
 					scanf("%s", student1[j].chName);
-					printf("输入第%d名学生学号:", j + 1);
-					scanf("%s", student1[j].chStudentId);
-					printf("输入第%d名学生年龄:", j + 1);
-					scanf("%d", &student.iStudentAge);
-					printf("输入第%d名学生性别:", j + 1);
+					printf("性别:");
 					scanf("%s", student1[j].chStudentSex);
+					printf("学号:");
+					scanf("%s", student1[j].chStudentId);
+					printf("年龄:");
+					scanf("%d", &student.iStudentAge);
 					for (int k = 0; k < student.iClassNumber; k++) {
-						printf("输入第%d名学生%s课的成绩:", j + 1, student1[k].chClass);
+						printf("%s课的成绩:", student1[k].chClass);
 						scanf("%d", &student1[k].iTest_scores[k]);
 					}
 					printf("\n");
@@ -109,12 +109,13 @@ void fnInput() {
 void fnDisplay() {
 	int tem;
 	for (int j = 0; j < student.iStudent; j++) {
-		printf("第%d名学生学号:%s\n", j + 1, student1[j].chStudentId);
-		printf("第%d名学生姓名:%s\n", j + 1, student1[j].chName);
-		printf("第%d名学生年龄:%d\n", j + 1, student.iStudentAge);
-		printf("第%d名学生性别:%s\n", j + 1, student1[j].chStudentSex);
+		printf("第%d名学生\n", j + 1);
+		printf("学号:%s\n", student1[j].chStudentId);
+		printf("姓名:%s\n", student1[j].chName);
+		printf("性别:%s\n", student1[j].chStudentSex);
+		printf("年龄:%d\n", student.iStudentAge);
 		for (int k = 0; k < student.iClassNumber; k++) {
-			printf("第%d名学生%s课的成绩:%d\n", j + 1, student1[k].chClass, student1[k].iTest_scores[k]);
+			printf("%s课的成绩:%d\n", student1[k].chClass, student1[k].iTest_scores[k]);
 		}
 		printf("\n");
 	}
@@ -133,7 +134,7 @@ void fnDisplay() {
 
 //信息查找
 void fnFindInfo() {
-	int iNumber, i;
+	int iNumber, i, iTemp = 0;
 	char chStudentnumber[30], chStudenName[30];
 	while (1) {
 		system("cls");
@@ -151,14 +152,20 @@ void fnFindInfo() {
 				scanf("%s", chStudentnumber);
 				for (i = 0; i < student.iStudent; i++)
 					if (strcmp(student1[i].chStudentId, chStudentnumber) == 0) {
-						printf("学号\t学生姓名 年龄\t性别\t  \n");
+						iTemp = 1;
+						printf("学号:%s\n", student1[i].chStudentId);
+						printf("姓名:%s\n", student1[i].chName);
+						printf("性别:%s\n", student1[i].chStudentSex);
+						printf("年龄:%d\n", student.iStudentAge);
+						for (int k = 0; k < student.iClassNumber; k++) {
+							printf("%s课的成绩:%d\n", student1[k].chClass, student1[k].iTest_scores[k]);
+						}
 						printf("\n");
-						printf("%s\t%s\t %d\t%s\t\n", student1[i].chStudentId, student1[i].chName, student.iStudentAge, student1[i].chStudentSex  );
 					}
-				if (strcmp(student1[i].chStudentId, chStudentnumber) != 0) {
+				if (iTemp == 0) {
 					printf("该学号不存在！\n");
 				}
-				system("pause");
+				system("pause");//暂停程序,用户按任意键结束
 				break;
 			//按姓名查询学生信息
 			case 2:
@@ -166,11 +173,17 @@ void fnFindInfo() {
 				scanf("%s", chStudenName);
 				for (i = 0; i < student.iStudent; i++)
 					if (strcmp(student1[i].chName, chStudenName) == 0) {
-						printf("学号\t学生姓名 年龄\t性别\t  \n");
+						iTemp = 1;
+						printf("学号:%s\n", student1[i].chStudentId);
+						printf("姓名:%s\n", student1[i].chName);
+						printf("性别:%s\n", student1[i].chStudentSex);
+						printf("年龄:%d\n", student.iStudentAge);
+						for (int k = 0; k < student.iClassNumber; k++) {
+							printf("%s课的成绩:%d\n", student1[k].chClass, student1[k].iTest_scores[k]);
+						}
 						printf("\n");
-						printf("%s\t%s\t %d\t%s\t\n", student1[i].chStudentId, student1[i].chName, student.iStudentAge, student.chStudentSex  );
 					}
-				if (strcmp(student1[i].chName, chStudenName) != 0) {
+				if (iTemp == 0) {
 					printf("该姓名不存在！\n");
 				}
 				system("pause");//暂停程序,用户按任意键结束
